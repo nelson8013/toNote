@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Cart
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://cart.test'
+paths:
+  /api/store-product:
+    post:
+      summary: ''
+      operationId: postApiStoreProduct
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: quisquam
+                image:
+                  type: string
+                  description: ''
+                  example: quo
+                description:
+                  type: string
+                  description: ''
+                  example: ratione
+                quantity:
+                  type: string
+                  description: ''
+                  example: est
+                price:
+                  type: string
+                  description: ''
+                  example: id
+              required:
+                - name
+                - image
+                - description
+                - quantity
+                - price
+      security: []
+  /api/add-cart:
+    post:
+      summary: ''
+      operationId: postApiAddCart
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: ''
+                  example: saepe
+                product_id:
+                  type: string
+                  description: ''
+                  example: voluptatem
+                quantity:
+                  type: string
+                  description: ''
+                  example: possimus
+                total:
+                  type: string
+                  description: ''
+                  example: aliquid
+              required:
+                - user_id
+                - product_id
+                - quantity
+                - total
+      security: []
+  /api/checkout-cart:
+    post:
+      summary: 'Checkout Method responsible for dispatching the order.'
+      operationId: checkoutMethodResponsibleForDispatchingTheOrder
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Orders created successfully'
+                  orders:
+                    -
+                      user_id: 1
+                      product_id: 2
+                      order_quantity: 1
+                      order_price: 495
+                      total: 495
+                    -
+                      user_id: 1
+                      product_id: 2
+                      order_quantity: 1
+                      order_price: 495
+                      total: 495
+                properties:
+                  message:
+                    type: string
+                    example: 'Orders created successfully'
+                  orders:
+                    type: array
+                    example:
+                      -
+                        user_id: 1
+                        product_id: 2
+                        order_quantity: 1
+                        order_price: 495
+                        total: 495
+                      -
+                        user_id: 1
+                        product_id: 2
+                        order_quantity: 1
+                        order_price: 495
+                        total: 495
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: integer
+                          example: 1
+                        product_id:
+                          type: integer
+                          example: 2
+                        order_quantity:
+                          type: integer
+                          example: 1
+                        order_price:
+                          type: integer
+                          example: 495
+                        total:
+                          type: integer
+                          example: 495
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

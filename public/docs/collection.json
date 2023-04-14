@@ -1,0 +1,125 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/cart.test"
+        }
+    ],
+    "info": {
+        "name": "Cart",
+        "_postman_id": "a21a30d8-7ba9-4f9b-a14d-2499ea15a71a",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/store-product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/store-product",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/store-product"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"quisquam\",\"image\":\"quo\",\"description\":\"ratione\",\"quantity\":\"est\",\"price\":\"id\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/add-cart",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-cart",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/add-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":\"saepe\",\"product_id\":\"voluptatem\",\"quantity\":\"possimus\",\"total\":\"aliquid\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Checkout Method responsible for dispatching the order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/checkout-cart",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/checkout-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"message\": \"Orders created successfully\",\n      \"orders\": [\n          {\n          \"user_id\": 1,\n          \"product_id\": 2,\n          \"order_quantity\": 1,\n          \"order_price\": 495,\n          \"total\": 495\n          },\n          {\n          \"user_id\": 1,\n          \"product_id\": 2,\n          \"order_quantity\": 1,\n          \"order_price\": 495,\n          \"total\": 495\n          }\n      ]\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

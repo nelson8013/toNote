@@ -23,7 +23,7 @@ Route::controller(ProductController::class)->group( function(){
 });
 
 Route::controller(CartController::class)->group(function () {
-    Route::post('/add-cart', 'add_to_cart')->name('add-cart');
+    Route::any('/add-cart', 'add_to_cart')->name('add-cart');
 });
 
 
