@@ -25,5 +25,5 @@ Tasks:
 
 ## API DOCUMENTATION
 
-production: appUrl/docs
-local: 127.0.0.1:8000/docs
+- production: appUrl/docs
+- local: 127.0.0.1:8000/docs
