@@ -38,7 +38,7 @@
                 />
 
                 <div>
-                  <h3 class="text-sm text-gray-900 font-bold" data-user="{{Auth::user()->id}}" data-product="{{$product->id}}">{{ $product->product->name }}</h3>
+                  <h3 class="text-sm text-gray-900 font-bold" data-user="1" data-product="{{$product->id}}">{{ $product->product->name }}</h3>
 
                   <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
                     <div>
@@ -253,7 +253,7 @@
               })
               .then(response => response.json())
               .then(data => console.log(data))
-              .catch(error => console.error(error));
+              .catch(error => console.log(error));
 
 
           }else{
@@ -263,55 +263,6 @@
 
            
         })
-
-
-        // const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-        // const cartCounter      = document.getElementById('cart-counter');
-
-
-        // addToCartButtons.forEach((button) => {
-        //     button.addEventListener('click', (event) => {
-        //     event.preventDefault();
-
-        //     const form      = button.parentElement;
-        //     const formData  = new FormData(form);
-        //     const url       = button.dataset.url
-        //     const csrfToken = window.Laravel.csrfToken;
-
-        //     console.log(csrfToken);
-        //     fetch(url, {
-        //         method: 'POST',
-        //         headers: {
-        //             'X-CSRF-Token': csrfToken,
-        //             'Accept': 'application/json'
-        //         },
-        //         body: formData,
-        //         responseType: 'text'
-        //         })
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             if(data.message === 'Unauthenticated.'){
-        //                  form.reset();
-        //                  Swal.fire(
-        //                     'Hmm!',
-        //                     'You need to login to add product to cart!',
-        //                     'error'
-        //                 )
-        //             }else{
-        //                 cartCounter.textContent = data.cartCount;
-        //                 form.reset();
-        //                 Swal.fire(
-        //                     'Good job!',
-        //                     data.message,
-        //                     'success'
-        //                 )
-        //             }
-        //         })
-        //         .catch((error) => console.error(error))
-        //         .catch((error) => console.log(error.response.text()));
-        //     });
-        // });
-
 
 </script>
 </body>

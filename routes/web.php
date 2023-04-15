@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 
-Route::controller(CartController::class)->middleware('auth')->group(function () {
+Route::controller(CartController::class)->group(function () {
     Route::any('/addToCart', 'add_to_cart')->name('addToCart');
     Route::get('/cart/{user}', 'cart')->name('cart');
     Route::post('/checkout', 'checkout')->name('checkout');

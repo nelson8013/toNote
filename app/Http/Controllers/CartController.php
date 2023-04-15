@@ -12,26 +12,20 @@ class CartController extends Controller
 {
 
     public function cart($user){
-        $cart  = Cart::where('user_id', Auth::user()->id)->get();
-        $total = Cart::where('user_id', Auth::user()->id)->sum('total');
+        $cart  = Cart::where('user_id', 1)->get();
+        $total = Cart::where('user_id', 1)->sum('total');
         return view('cart',compact('cart', 'user','total'));
     }
 
     public function add_to_cart(CartRequest $request){
-        if (!Auth::check()) {
+        
+        $responded = Route::dispatch( Request::create("api/add-cart", 'POST', $request->all()) );
+        if ($responded->status() == 200 ) {
             return response()->json([
-                'error' => 'You must be logged in to add products to cart!😞 .',
-                'state' => 0,
-            ],   401);
-        }else{
-            $responded = Route::dispatch( Request::create("api/add-cart", 'POST', $request->all()) );
-            if ($responded->status() == 200 ) {
-                return response()->json([
-                    'state' => 1,
-                    'message' => 'dis item don enta cart. Wehdone!😃',
-                    'cartCount' => Cart::where('user_id', $request->user_id)->count(),
-                ]);
-            }
+                'state' => 1,
+                'message' => 'dis item don enta cart. Wehdone!😃',
+                'cartCount' => Cart::where('user_id', $request->user_id)->count(),
+            ]);
         }
         return redirect()->back()->with('error', 'We  couldn\'t add to cart 😞'); 
         
