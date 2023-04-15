@@ -5,7 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CartRequest;
-use App\Services\CartService;
+use App\Kafta\Consumer;
+use App\Kafta\Producer;
 use App\Dto\CartDto;
 
 
@@ -46,23 +47,23 @@ use App\Dto\CartDto;
 class CartController extends Controller
 {
     
-    private CartService $cartService; 
+    private Consumer $consumer; 
         
     /**
-     * Create a new CartController instance.
+     * Create a new Cunsumer instance.
      *
-     * @param CartService $cartService An instance of the CartService class.
+     * @param Consumer $consumer An instance of the Kafte Consumer class.
     */
 
-    public function __construct(CartService $cartService)
+    public function __construct(Consumer $consumer)
     {
-        $this->cartService = $cartService;
+        $this->consumer = $consumer;
     }
 
     /**
      * 
      * This is the method that receives the cart request
-     * and dispatches it to the CartService through the CartDto.
+     * and dispatches it to the Consumer through the CartDto.
      * In the method the following params are expected by the CartDTO calss 
      *
      * @param int $user_id The Logged In user saving the Cart.
@@ -77,8 +78,10 @@ class CartController extends Controller
 
     public function add_to_cart(CartRequest $request)
     {
-        $cartDto = new CartDto($request->user_id, $request->product_id, $request->quantity, $request->total);
-        $cart    = $this->cartService->add_to_cart($cartDto);
+        (new Producer())->messageToKaftaTopicOnAddToCart( 1, $request->product_id);
+
+        $cartDto = new CartDto(1, $request->product_id, $request->quantity, $request->total);
+        $cart    = $this->consumer->listenToCartItemsAndStoreInCartTable($cartDto);
 
         if ($cart) {
             return response()->json($cart, 200);

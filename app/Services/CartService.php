@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Dto\CartDTO;
+use App\Kafta\Producer;
 
 class CartService {
 
@@ -26,6 +27,8 @@ class CartService {
        $cart->total        = $cartDTO->total;
        $cart->save();
 
+       (new Producer())->messageToKaftaTopicOnAddToCart( 1,$cartDTO->product_id);
+       
        return response()->json([ 'message' => 'success','cart' => $cart ],200);
 
       }catch (\Exception $e) {
@@ -35,6 +38,8 @@ class CartService {
           report($e->getMessage());
       }
   }
+
+ 
 
 
 }

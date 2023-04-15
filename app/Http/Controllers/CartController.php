@@ -18,7 +18,6 @@ class CartController extends Controller
     }
 
     public function add_to_cart(CartRequest $request){
-        
         $responded = Route::dispatch( Request::create("api/add-cart", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             return response()->json([
@@ -28,7 +27,6 @@ class CartController extends Controller
             ]);
         }
         return redirect()->back()->with('error', 'We  couldn\'t add to cart 😞'); 
-        
     }
 
     public function checkout(Request $request){
